@@ -16,10 +16,17 @@ class Scroll {
     const validatedOptions = {
       id: uid(),
       target: null,
+      scrollableElm: null,
       ...options,
     };
     validatedOptions.target = validateTarget(validatedOptions.target);
-    if (!validatedOptions.target) return null;
+    validatedOptions.scrollableElm = validateTarget(
+      validatedOptions.scrollableElm
+    );
+
+    // invalid DOM elements
+    if (!validatedOptions.target || !validatedOptions.scrollableElm)
+      return null;
 
     // init new instance
     const instance = new Instance(validatedOptions);

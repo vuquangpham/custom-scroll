@@ -1,18 +1,22 @@
 // style
-import './style.scss';
+import "./style.scss";
 
 // library
-import '@/_index.js';
+import "@/_index.js";
 
 // package info
-import packageInfo from '../package.json';
+import packageInfo from "../package.json";
 
 // update project information
-const dataTitles = document.querySelectorAll('[data-title]');
-const dataDescriptions = document.querySelectorAll('[data-description]');
+const dataTitles = document.querySelectorAll("[data-title]");
+const dataDescriptions = document.querySelectorAll("[data-description]");
 
 // update information
-dataTitles.forEach(e => e.innerHTML = packageInfo["prettyName"]);
-dataDescriptions.forEach(e => e.innerHTML = packageInfo.description);
+dataTitles.forEach((e) => (e.innerHTML = packageInfo["prettyName"]));
+dataDescriptions.forEach((e) => (e.innerHTML = packageInfo.description));
 
 // custom code
+Scroll.create({
+  target: "main",
+  scrollableElm: "[data-scrollable]",
+});
