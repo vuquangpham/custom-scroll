@@ -1,19 +1,43 @@
 import EventEmitter from "./events";
 import { INSTANCE_CLASSES } from "./configs";
-import { init } from "./helpers";
+import {
+  init,
+  setPosition,
+  getScrollPosition,
+  getScrollSpeed,
+} from "./helpers";
 import Listeners from "./listeners";
+import { lerp } from "./utils";
 
 export default class Instance {
   constructor(options) {
     this.options = options;
+
+    // DOM elements
     this.target = options.target;
     this.scrollableElement = options.scrollableElm;
+
+    // easing
+    this.scrollEase = options.scrollEase;
+    this.speedEase = options.speedEase;
 
     // already initialized
     if (this.target.classList.contains(INSTANCE_CLASSES.enabled)) {
       console.error("The target has already initialized!");
       return null;
     }
+
+    // instance variable
+    this.windowScrollY = 0;
+    this.scrollableHeight = 0;
+
+    // position
+    this.scrollPositionInLerp = 0;
+    this.scrollPosition = 0;
+
+    // speed
+    this.speed = 0;
+    this.speedInLerp = 0;
 
     // init
     this.hasInitialized = init(this);
@@ -28,6 +52,9 @@ export default class Instance {
 
     // add enabled class
     this.target.classList.add(INSTANCE_CLASSES.enabled);
+
+    // render the scroll
+    this.render();
   }
 
   /**
@@ -38,6 +65,31 @@ export default class Instance {
    * */
   on(name, callback) {
     this.events.on(name, callback);
+  }
+
+  /**
+   * Render the scrollable element to fit with the position
+   */
+  render() {
+    // calculate the speed, limit the distance on each scroll by 200px
+    this.speed = getScrollSpeed(this);
+    this.speedInLerp = +lerp(
+      this.speedInLerp,
+      this.speed,
+      this.speedEase
+    ).toFixed(3);
+
+    this.scrollPosition = getScrollPosition();
+    this.scrollPositionInLerp = +lerp(
+      this.scrollPositionInLerp,
+      this.scrollPosition,
+      this.scrollEase
+    ).toFixed(3);
+
+    // translate the scrollable element
+    setPosition(this);
+
+    requestAnimationFrame(this.render.bind(this));
   }
 
   /**

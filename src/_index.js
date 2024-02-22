@@ -17,6 +17,11 @@ class Scroll {
       id: uid(),
       target: null,
       scrollableElm: null,
+
+      scrollEase: 0.2,
+      speedEase: 0.2,
+
+      render: false,
       ...options,
     };
     validatedOptions.target = validateTarget(validatedOptions.target);
