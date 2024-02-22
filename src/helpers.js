@@ -1,4 +1,4 @@
-import { setCSS } from "./utils";
+import { isFunction, setCSS } from "./utils";
 
 /**
  * Validate DOM element
@@ -44,8 +44,33 @@ export function init(context) {
   // fixed height for the scrollable element
   initStyleForScrollableElement(context);
 
-  console.log(context);
+  // check auto render option
+  if (context.options.autoRender) {
+    context.render();
+  }
+
+  // init events
+  initEvents(context);
+
+  // revoke init event
+  context.events.trigger("onInit", [context]);
+
   return true;
+}
+
+/**
+ * Init events
+ * @param {Object} context
+ * @return {void}
+ */
+function initEvents(context) {
+  // init event
+  if (context.options.onInit && isFunction(context.options.onInit))
+    context.events.on("onInit", context.options.onInit);
+
+  // render event
+  if (context.options.onRender && isFunction(context.options.onRender))
+    context.events.on("onRender", context.options.onRender);
 }
 
 /**

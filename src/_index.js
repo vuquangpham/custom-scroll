@@ -21,7 +21,10 @@ class Scroll {
       scrollEase: 0.2,
       speedEase: 0.2,
 
-      render: false,
+      autoRender: false,
+
+      onInit: (self) => {},
+      onRender: (self) => {},
       ...options,
     };
     validatedOptions.target = validateTarget(validatedOptions.target);

@@ -19,4 +19,12 @@ dataDescriptions.forEach((e) => (e.innerHTML = packageInfo.description));
 Scroll.create({
   target: "main",
   scrollableElm: "[data-scrollable]",
+  autoRender: true,
+
+  onInit: (self) => {
+    console.log("init", self);
+  },
+  onRender: (self) => {
+    console.log("render", self);
+  },
 });

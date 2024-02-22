@@ -21,6 +21,8 @@ export default class Instance {
     this.scrollEase = options.scrollEase;
     this.speedEase = options.speedEase;
 
+    this.autoRender = options.autoRender;
+
     // already initialized
     if (this.target.classList.contains(INSTANCE_CLASSES.enabled)) {
       console.error("The target has already initialized!");
@@ -39,10 +41,6 @@ export default class Instance {
     this.speed = 0;
     this.speedInLerp = 0;
 
-    // init
-    this.hasInitialized = init(this);
-    if (!this.hasInitialized) return null;
-
     // events emitter
     this.events = new EventEmitter();
 
@@ -50,11 +48,12 @@ export default class Instance {
     // contains: name, target, handler
     this.listeners = new Listeners();
 
+    // init
+    this.hasInitialized = init(this);
+    if (!this.hasInitialized) return null;
+
     // add enabled class
     this.target.classList.add(INSTANCE_CLASSES.enabled);
-
-    // render the scroll
-    this.render();
   }
 
   /**
@@ -89,7 +88,11 @@ export default class Instance {
     // translate the scrollable element
     setPosition(this);
 
-    requestAnimationFrame(this.render.bind(this));
+    // trigger render event
+    this.events.trigger("onRender", [this]);
+
+    // auto render
+    if (this.autoRender) requestAnimationFrame(this.render.bind(this));
   }
 
   /**
