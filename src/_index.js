@@ -1,6 +1,3 @@
-// style
-import "./_index.scss";
-
 // script
 import { validateTarget } from "./helpers";
 import { uid } from "./utils";
