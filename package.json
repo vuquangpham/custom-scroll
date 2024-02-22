@@ -1,10 +1,10 @@
 {
-  "name": "boilw",
-  "prettyName": "Boilw Template",
-  "outputName": "boilw",
+  "name": "custom-scroll",
+  "prettyName": "Scroll.js",
+  "outputName": "Scroll",
   "version": "0.0.1",
-  "description": "A boilerplate for creating a library with Javascript",
-  "main": "./dist/boilw.min.js",
+  "description": "Custom scroll for creating the smooth transition effect",
+  "main": "./dist/Scroll.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --host=0.0.0.0 --config config/webpack.dev.js",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/vuquangpham/boilw.git"
+    "url": "https://github.com/vuquangpham/custom-scroll.git"
   },
   "keywords": [
     "javascript",
@@ -28,9 +28,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/vuquangpham/boilw/issues"
+    "url": "https://github.com/vuquangpham/custom-scroll/issues"
   },
-  "homepage": "https://github.com/vuquangpham/boilw",
+  "homepage": "https://github.com/vuquangpham/custom-scroll",
   "devDependencies": {
     "@babel/core": "^7.19.6",
     "@babel/plugin-proposal-class-properties": "^7.18.6",
