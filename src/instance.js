@@ -105,6 +105,6 @@ export default class Instance {
     // remove enabled class
     this.target.classList.remove(INSTANCE_CLASSES.enabled);
 
-    return Library.destroy(this);
+    return Scroll.destroy(this);
   }
 }
