@@ -5,6 +5,7 @@ import {
   setPosition,
   getScrollPosition,
   getScrollSpeed,
+  initScrollVariables,
 } from "./helpers";
 import Listeners from "./listeners";
 import { lerp } from "./utils";
@@ -93,6 +94,13 @@ export default class Instance {
 
     // auto render
     if (this.autoRender) requestAnimationFrame(this.render.bind(this));
+  }
+
+  /**
+   * Resize the vars
+   */
+  resize() {
+    initScrollVariables(this);
   }
 
   /**

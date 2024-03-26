@@ -34,15 +34,8 @@ export function init(context) {
   // validate the id
   context.id = context.options.id;
 
-  // update the current position
-  context.scrollPosition = context.scrollPositionInLerp = getScrollPosition();
-
-  // set scrollable height
-  context.scrollableHeight = context.scrollableElement.scrollHeight;
-  setScrollableHeight(context.scrollableHeight);
-
-  // fixed height for the scrollable element
-  initStyleForScrollableElement(context);
+  // init scroll variables
+  initScrollVariables(context);
 
   // check auto render option
   if (context.options.autoRender) {
@@ -56,6 +49,21 @@ export function init(context) {
   context.events.trigger("onInit", [context]);
 
   return true;
+}
+
+/**
+ * Init vars
+ */
+export function initScrollVariables(context) {
+  // update the current position
+  context.scrollPosition = context.scrollPositionInLerp = getScrollPosition();
+
+  // set scrollable height
+  context.scrollableHeight = context.scrollableElement.scrollHeight;
+  setScrollableHeight(context.scrollableHeight);
+
+  // fixed height for the scrollable element
+  initStyleForScrollableElement(context);
 }
 
 /**
