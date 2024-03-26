@@ -6,7 +6,6 @@ import {
   getScrollPosition,
   getScrollSpeed,
   initScrollVariables,
-  setScrollableHeight,
 } from "./helpers";
 import Listeners from "./listeners";
 import { lerp } from "./utils";
@@ -101,10 +100,6 @@ export default class Instance {
    * Resize the vars
    */
   resize() {
-    // clear the previous height
-    setScrollableHeight(0);
-
-    // initialize new height
     initScrollVariables(this);
   }
 
