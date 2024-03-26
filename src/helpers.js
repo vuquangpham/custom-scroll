@@ -86,7 +86,7 @@ function initEvents(context) {
  * @param {Number} height
  * @return {void}
  */
-function setScrollableHeight(height) {
+export function setScrollableHeight(height) {
   setCSS(document.body, { height: height + "px" });
 }
 
